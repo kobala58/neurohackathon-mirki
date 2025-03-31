@@ -1,16 +1,19 @@
-// src/App.tsx
-import React from 'react';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { theme } from './theme';
-import LandingPage from './pages/landingPage/index.tsx';
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "./theme";
+import { LandingPage } from "./pages/landingPage";
+import { ToastProvider } from "./components/toast";
 
-const App: React.FC = () => {
+const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <LandingPage />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ToastProvider>
+        <ThemeProvider theme={theme}>
+          <LandingPage />
+        </ThemeProvider>
+      </ToastProvider>
+    </Provider>
   );
 };
 
